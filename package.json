@@ -8,6 +8,12 @@
   },
   "license": "MIT",
   "author": "revil <revil@revil.com@gmail.com>",
+  "engines": {
+    "bun": ">=1.2.0"
+  },
+  "workspaces": [
+    "packages/bun-http-server"
+  ],
   "devDependencies": {
     "@types/bun": "^1.2",
     "typescript": "^5"

@@ -1,0 +1,14 @@
+  {
+    "name": "bun-http-server",
+    "scripts": {
+      "dev": "nodemon src/main.ts"
+    },
+    "devDependencies": {
+      "@nestjs/common": "^11.1.6",
+      "@nestjs/core": "^11.1.6"
+    },
+    "peerDependencies": {
+      "@nestjs/common": "^11.0.0",
+      "@nestjs/core": "^11.0.0"
+    }
+  }
