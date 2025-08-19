@@ -1,6 +1,6 @@
 {
   "name": "nestjs-packages",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Nestjs Packages",
   "repository": {
     "type": "git",
@@ -12,10 +12,11 @@
     "bun": ">=1.2.0"
   },
   "workspaces": [
-    "packages/bun-http-server"
+    "packages/bun-http"
   ],
   "devDependencies": {
     "@types/bun": "^1.2",
+    "supertest": "^7.1.4",
     "typescript": "^5"
   }
 }
