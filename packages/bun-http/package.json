@@ -1,16 +1,19 @@
 {
   "name": "bun-http-server",
-  "scripts": {
-    "dev": "nodemon src/main.ts"
-  },
   "devDependencies": {
     "@nestjs/common": "^11.1.6",
-    "@nestjs/core": "^11.1.6"
+    "@nestjs/core": "^11.1.6",
+    "@nestjs/testing": "^11.1.6",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2"
   },
   "peerDependencies": {
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "http-status-codes": "^2.3.0"
+  },
+  "scripts": {
+    "dev": "nodemon src/main.ts"
   },
   "dependencies": {
     "bunner": "github:parkrevil/bunner#main"
