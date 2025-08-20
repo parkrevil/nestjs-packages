@@ -1,17 +1,10 @@
 import 'reflect-metadata';
 
-import { ArgumentMetadata, PipeTransform, ValidationPipe } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { afterAll, beforeAll, describe, expect, it } from 'bun:test';
-import { BunHttpAdapter } from '../../src/adapter/bun-http-adapter';
+import { BunnerAdapter } from '../../src/adapter';
 import { AppModule } from '../src/app.module';
-
-class LoggingPipe implements PipeTransform {
-  transform(value: any, metadata: ArgumentMetadata) {
-    console.log('LoggingPipe called!', value, metadata);
-    return value;
-  }
-}
 
 describe('AppController (e2e)', () => {
   let app: any;
@@ -19,7 +12,7 @@ describe('AppController (e2e)', () => {
   const baseUrl = `http://localhost:${port}`;
 
   beforeAll(async () => {
-    app = await NestFactory.create(AppModule, new BunHttpAdapter());
+    app = await NestFactory.create(AppModule, new BunnerAdapter());
     app.enableCors({
       origin: `http://localhost:${port}`,
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -39,6 +32,7 @@ describe('AppController (e2e)', () => {
   afterAll(async () => {
     await app.close();
   });
+
   it('사용자 목록 조회 - 잘못된 페이지 번호', async () => {
     const response = await fetch(`${baseUrl}/users?page=invalid`);
     const data = await response.json();

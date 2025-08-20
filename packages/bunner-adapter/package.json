@@ -1,5 +1,5 @@
 {
-  "name": "bun-http-server",
+  "name": "bunner-adapter",
   "devDependencies": {
     "@nestjs/common": "^11.1.6",
     "@nestjs/core": "^11.1.6",

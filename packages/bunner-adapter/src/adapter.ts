@@ -4,7 +4,7 @@ import { NestApplicationOptions } from '@nestjs/common/interfaces/nest-applicati
 import { AbstractHttpAdapter } from '@nestjs/core/adapters/http-adapter';
 import { Bunner, BunnerRequest, BunnerResponse, BunnerServerOptions, CorsOptions } from 'bunner';
 
-export class BunHttpAdapter extends AbstractHttpAdapter<Bunner, BunnerRequest, BunnerResponse> {
+export class BunnerAdapter extends AbstractHttpAdapter<Bunner, BunnerRequest, BunnerResponse> {
   protected instance: Bunner;
 
   constructor(options?: BunnerServerOptions) {

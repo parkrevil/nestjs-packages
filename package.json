@@ -1,10 +1,10 @@
 {
-  "name": "nestjs-packages",
+  "name": "nestjs-bun-packages",
   "version": "0.0.1",
-  "description": "Nestjs Packages",
+  "description": "Nestjs Bun Packages",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nestjs-packages/nestjs-packages.git"
+    "url": "https://github.com/parkrevil/nestjs-bun-packages.git"
   },
   "license": "MIT",
   "author": "revil <revil@revil.com@gmail.com>",
@@ -12,7 +12,7 @@
     "bun": ">=1.2.0"
   },
   "workspaces": [
-    "packages/bun-http"
+    "packages/bunner-adapter"
   ],
   "devDependencies": {
     "@nestjs/platform-express": "^11.1.6",

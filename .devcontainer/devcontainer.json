@@ -1,10 +1,10 @@
 {
-  "name": "Nestjs Packages",
+  "name": "Nestjs Bun Packages",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "runArgs": [
-    "--name=nestjs-packages-devcontainer",
-    "--label=com.docker.compose.project=nestjs-packages",
-    "--label=com.docker.compose.service=nestjs-packages"
+    "--name=nestjs-bun-packages-devcontainer",
+    "--label=com.docker.compose.project=nestjs-bun-packages",
+    "--label=com.docker.compose.service=nestjs-bun-packages"
   ],
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2.5.4": {},

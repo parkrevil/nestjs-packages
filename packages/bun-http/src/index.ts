@@ -1,1 +1,0 @@
-export { BunHttpAdapter } from './adapter';
