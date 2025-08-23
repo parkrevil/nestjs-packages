@@ -20,7 +20,6 @@ describe('AppController (e2e)', () => {
       credentials: true,
     });
     app.useGlobalPipes(
-      // new LoggingPipe(),
       new ValidationPipe({
         whitelist: true,
         forbidNonWhitelisted: true,

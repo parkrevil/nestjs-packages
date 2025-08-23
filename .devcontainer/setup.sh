@@ -15,6 +15,8 @@ echo "[SYSTEM] Upgrading packages..."
 sudo apt-get upgrade -qq -y
 
 echo "🔧 Install project dependencies..."
+rm -rf node_modules bun.lock bun.lockb
+bun pm cache rm
 bun install
 
 echo ""

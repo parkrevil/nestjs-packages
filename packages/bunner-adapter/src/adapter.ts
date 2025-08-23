@@ -3,6 +3,7 @@ import { VersionValue } from '@nestjs/common/interfaces';
 import { NestApplicationOptions } from '@nestjs/common/interfaces/nest-application-options.interface';
 import { AbstractHttpAdapter } from '@nestjs/core/adapters/http-adapter';
 import { Bunner, BunnerRequest, BunnerResponse, BunnerServerOptions, CorsOptions } from 'bunner';
+import { UseStaticAssetsOptions } from './interfaces';
 
 export class BunnerAdapter extends AbstractHttpAdapter<Bunner, BunnerRequest, BunnerResponse> {
   protected instance: Bunner;
@@ -13,6 +14,10 @@ export class BunnerAdapter extends AbstractHttpAdapter<Bunner, BunnerRequest, Bu
     super(bunner);
 
     this.instance = bunner;
+  }
+
+  test() {
+    console.log('ddddd');
   }
 
   /**
@@ -29,9 +34,7 @@ export class BunnerAdapter extends AbstractHttpAdapter<Bunner, BunnerRequest, Bu
     const hostname = typeof hostnameOrCallback === 'string' ? hostnameOrCallback : undefined;
     const cb = typeof hostnameOrCallback === 'function' ? hostnameOrCallback : callback;
 
-    this.instance.listen(hostname || '0.0.0.0', Number(port));
-
-    cb?.();
+    this.instance.listen(hostname || '0.0.0.0', Number(port), cb);
   }
 
   /**
@@ -48,27 +51,8 @@ export class BunnerAdapter extends AbstractHttpAdapter<Bunner, BunnerRequest, Bu
    */
   initHttpServer(options: NestApplicationOptions) { }
 
-  useStaticAssets(...args: any[]): any {
-    const path = args[0];
-    const options = args[1] || {};
-
-    this.use(async (req: Request, res: Response, next: () => void) => {
-      const url = new URL(req.url);
-      if (url.pathname.startsWith(path)) {
-        try {
-          const filePath = url.pathname.replace(path, '');
-          const file = Bun.file(filePath);
-          if (await file.exists()) {
-            return new Response(file, {
-              headers: { 'content-type': file.type },
-            });
-          }
-        } catch (error) {
-          // 파일을 찾을 수 없는 경우 다음 미들웨어로
-        }
-      }
-      next();
-    });
+  useStaticAssets(path: string, { prefix, ...options }: UseStaticAssetsOptions) {
+    this.instance.static(prefix, path, options);
 
     return this;
   }
@@ -192,7 +176,7 @@ export class BunnerAdapter extends AbstractHttpAdapter<Bunner, BunnerRequest, Bu
    * @param prefix - Prefix
    * @returns this
    */
-  // TODO: prefix 처리
+  // TODO: prefix
   enableCors(options?: CorsOptions, prefix?: string): any {
     this.instance.cors(options || {});
 
@@ -200,6 +184,7 @@ export class BunnerAdapter extends AbstractHttpAdapter<Bunner, BunnerRequest, Bu
   }
 
   async createMiddlewareFactory(requestMethod: RequestMethod): Promise<(path: string, callback: Function) => any> {
+    console.log('createMiddlewareFactory');
     return (path: string, callback: Function) => {
       this.use(async (req: Request, res: Response, next: () => void) => {
         const url = new URL(req.url);
